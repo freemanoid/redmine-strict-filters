@@ -1,0 +1,12 @@
+<div>
+  Для роли
+  <%= select_tag 'settings[role_id_for_strict_filter_author]', options_from_collection_for_select(Role.givable, :id, :name, settings[:role_id_for_strict_filter_author]) %>
+  отображать только задачи, которые он создал.
+</div>
+<div>
+  Для роли
+  <%= select_tag 'settings[role_id_for_strict_filter_custom_field_list]', options_from_collection_for_select(Role.givable, :id, :name, settings[:role_id_for_strict_filter_custom_field_list]) %>
+  отображать только те задачи, где его <b>фамилия</b> есть в поле
+  <%= select_tag 'settings[custom_field_id_for_strict_filter_custom_field_list]', options_from_collection_for_select(CustomField.where(field_format: 'list'), :id, :name, settings[:custom_field_id_for_strict_filter_custom_field_list]) %>
+</div>
+
