@@ -37,6 +37,10 @@ module StrictFilter
         res = issue_count_without_only_created_by_self_for_manager - (issues_without_only_created_by_self_for_manager.count - issues_with_only_created_by_self_for_manager.count)
         res < 0 ? 0 : res
       end
+
+      def issue_ids_with_only_created_by_self_for_manager(options = {})
+        issues_with_only_created_by_self_for_manager(options).map(&:id)
+      end
     end
 
     def self.included(receiver)
@@ -47,6 +51,7 @@ module StrictFilter
 
         alias_method_chain :issues, :only_created_by_self_for_manager
         alias_method_chain :issue_count, :only_created_by_self_for_manager
+        alias_method_chain :issue_ids, :only_created_by_self_for_manager
       end
     end
   end
